@@ -1,4 +1,4 @@
-name: 纯Bark测试
+name: 商人API测试
 on:
   workflow_dispatch:
 
@@ -6,5 +6,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: 发送测试消息
-        run: curl "https://api.day.app/FNHsHZzGM2sirZcncfkgbb/测试/收到就是成功！"
+      - name: 获取商人数据并推送
+        run: |
+          # 调用商人API（用你提供的密钥）
+          DATA=$(curl -s "https://roco-api.entropy-increase.team/api/merchant" \
+            -H "Authorization: Bearer sk-f9a97f99fed455ae910d028edc172078")
+          
+          # 直接把API返回的内容推送到Bark，不做任何解析
+          curl -s "https://api.day.app/FNHsHZzGM2sirZcncfkgbb/商人数据测试/$DATA"
