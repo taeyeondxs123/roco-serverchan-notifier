@@ -1,0 +1,10 @@
+name: 纯Bark测试
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 发送测试消息
+        run: curl "https://api.day.app/FNHsHZzGM2sirZcncfkgbb/测试/收到就是成功！"
